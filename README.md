@@ -5,3 +5,4 @@ Libraries:
 - micro_ros_arduino-2.0.0-foxy - https://github.com/micro-ROS/micro_ros_arduino/tree/foxy
 - Encoder - Paul Stoffregen - https://github.com/PaulStoffregen/Encoder
 - Discrete_PID_Controller - https://github.com/racarla96/Discrete_PID_Controller
+- Adafruit_Motor_Shield_V2_Library (MOD) - https://github.com/racarla96/Adafruit_Motor_Shield_V2_Library
