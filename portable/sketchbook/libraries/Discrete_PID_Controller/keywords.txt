@@ -1,0 +1,8 @@
+DiscretePID	KEYWORD1
+PID	KEYWORD1
+compute	KEYWORD2
+reset	KEYWORD2
+setGains	KEYWORD2
+setSampleTime	KEYWORD2
+setOutputLimits	KEYWORD2
+N	LITERAL1
