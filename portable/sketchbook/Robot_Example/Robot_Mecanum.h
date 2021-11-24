@@ -54,8 +54,8 @@ class Robot_Mecanum {
 
         /* */
         const long control_period_us = (long) PERIOD_us;
-        const float control_Kp = 1.28 / 2;
-        const float control_Ki = 9.35 / 2;
+        const float control_Kp = 0.13567;
+        const float control_Ki = 4.66;
         const float control_L_lim = -12;
         const float control_U_lim = 12;
         float control_K_v;

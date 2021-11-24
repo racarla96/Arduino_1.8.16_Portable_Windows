@@ -23,7 +23,7 @@ Robot_Mecanum::Robot_Mecanum() {
     AFMS = new Adafruit_MotorShield(); 
     AFMS->begin();
 
-    ina219 = new DFRobot_INA219_IIC(&Wire, INA219_I2C_ADDRESS4);
+    ina219 = new DFRobot_INA219_IIC(&Wire1, INA219_I2C_ADDRESS4);
     while (ina219->begin() != true) {}
     ina219->linearCalibrate(DFRobot_INA219_Reading_mA, DFRobot_INA219_ExtMeter_Reading_mA);
 
@@ -126,7 +126,7 @@ void Robot_Mecanum::control()
   M3_newPosition = M3_Enc->read();
   M4_newPosition = M4_Enc->read();
 
-  Battery_Voltage = ina219->getBusVoltage_V();
+  Battery_Voltage = 12.3; //ina219->getBusVoltage_V();
   control_K_v = Driver_Resolution / Battery_Voltage;
 
   if(Battery_Voltage > 12){
@@ -195,19 +195,19 @@ float Robot_Mecanum::get_battery_voltage_level() {
 
 
 float Robot_Mecanum::get_M1_rads() {
-    return M1_ang_vel;
+    return -1 * M1_ang_vel;
 }
 
 float Robot_Mecanum::get_M2_rads() {
-    return M2_ang_vel;
+    return -1 * M2_ang_vel;
 }
 
 float Robot_Mecanum::get_M3_rads() {
-    return M3_ang_vel;
+    return -1 * M3_ang_vel;
 }
 
 float Robot_Mecanum::get_M4_rads() {
-    return M4_ang_vel;
+    return -1 * M4_ang_vel;
 }
 
 void Robot_Mecanum::set_M1_ref_rads(float M1_ref_ang_vel) {
