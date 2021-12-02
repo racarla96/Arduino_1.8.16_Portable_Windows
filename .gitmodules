@@ -1,0 +1,3 @@
+[submodule "portable/sketchbook/libraries/DueFreeRTOS"]
+	path = portable/sketchbook/libraries/DueFreeRTOS
+	url = ../DueFreeRTOS.git
