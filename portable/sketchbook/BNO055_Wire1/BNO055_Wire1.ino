@@ -28,11 +28,11 @@
 */
 
 /* Set the delay between fresh samples */
-#define BNO055_SAMPLERATE_DELAY_MS (100)
+#define BNO055_SAMPLERATE_DELAY_MS (10)
 
 // Check I2C device address and correct line below (by default address is 0x29 or 0x28)
 //                                   id, address
-Adafruit_BNO055 bno = Adafruit_BNO055(55, 0x29, &Wire1);
+Adafruit_BNO055 bno = Adafruit_BNO055(-1, 0x28, &Wire1);
 
 /**************************************************************************/
 /*
@@ -61,24 +61,17 @@ void displaySensorDetails(void)
     Arduino setup function (automatically called at startup)
 */
 /**************************************************************************/
-const uint8_t pinBNO055 = 31;
-
 void setup(void)
 {
   Serial.begin(115200);
-  Serial.println("Orientation Sensor Raw Data Test"); Serial.println("");
+//  Serial.println("Orientation Sensor Raw Data Test"); Serial.println("");
 
-  pinMode(pinBNO055, OUTPUT);
-  digitalWrite(pinBNO055, LOW);
-  delay(500);
-  digitalWrite(pinBNO055, HIGH);
-  delay(500);
-
+  Wire1.begin();
   /* Initialise the sensor */
   if(!bno.begin())
   {
     /* There was a problem detecting the BNO055 ... check your connections */
-    Serial.print("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
+    Serial.println("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
     while(1);
   }
    
@@ -88,7 +81,7 @@ void setup(void)
   bno.setExtCrystalUse(true);
    
   /* Display some basic information on this sensor */
-  displaySensorDetails();
+//  displaySensorDetails();
 }
 
 /**************************************************************************/
@@ -123,17 +116,17 @@ void loop(void)
   Serial.print((float)event.orientation.z);
   Serial.println(F(""));
 
-  /* Also send calibration data for each sensor. */
-  uint8_t sys, gyro, accel, mag = 0;
-  bno.getCalibration(&sys, &gyro, &accel, &mag);
-  Serial.print(F("Calibration: "));
-  Serial.print(sys, DEC);
-  Serial.print(F(" "));
-  Serial.print(gyro, DEC);
-  Serial.print(F(" "));
-  Serial.print(accel, DEC);
-  Serial.print(F(" "));
-  Serial.println(mag, DEC);
+//  /* Also send calibration data for each sensor. */
+//  uint8_t sys, gyro, accel, mag = 0;
+//  bno.getCalibration(&sys, &gyro, &accel, &mag);
+//  Serial.print(F("Calibration: "));
+//  Serial.print(sys, DEC);
+//  Serial.print(F(" "));
+//  Serial.print(gyro, DEC);
+//  Serial.print(F(" "));
+//  Serial.print(accel, DEC);
+//  Serial.print(F(" "));
+//  Serial.println(mag, DEC);
 
   delay(BNO055_SAMPLERATE_DELAY_MS);
 }
