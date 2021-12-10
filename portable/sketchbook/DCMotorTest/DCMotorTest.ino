@@ -16,7 +16,7 @@ Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 // Adafruit_MotorShield AFMS = Adafruit_MotorShield(0x61); 
 
 // Select which 'port' M1, M2, M3 or M4. In this case, M1
-Adafruit_DCMotor *myMotor = AFMS.getMotor(4);
+Adafruit_DCMotor *myMotor = AFMS.getMotor(1);
 // You can also make another motor on port M2
 //Adafruit_DCMotor *myOtherMotor = AFMS.getMotor(2);
 
@@ -31,11 +31,33 @@ void setup() {
 }
 
 void loop() {
+  uint16_t i;
+  
+  Serial.print("tick");
 
   myMotor->run(FORWARD);
-  myMotor->setSpeed(2048);  
-  delay(1000);
+  for (i=0; i<4096; i++) {
+    myMotor->setSpeed(i);  
+    delay(10);
+  }
+  for (i=4095; i!=0; i--) {
+    myMotor->setSpeed(i);  
+    delay(10);
+  }
+  
+  Serial.print("tock");
+
+  myMotor->run(BACKWARD);
+  for (i=0; i<4096; i++) {
+    myMotor->setSpeed(i);  
+    delay(10);
+  }
+  for (i=4095; i!=0; i--) {
+    myMotor->setSpeed(i);  
+    delay(10);
+  }
+
+  Serial.print("tech");
   myMotor->run(RELEASE);
-  myMotor->setSpeed(0);  
   delay(1000);
 }
